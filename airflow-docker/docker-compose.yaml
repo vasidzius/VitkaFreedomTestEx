@@ -232,6 +232,8 @@ services:
         fi
         mkdir -p /sources/logs /sources/dags /sources/plugins
         chown -R "${AIRFLOW_UID}:0" /sources/{logs,dags,plugins}
+        # Используйте пользователя airflow для выполнения команд pip
+        su -c "pip install sqlalchemy" -s /bin/bash airflow
         exec /entrypoint airflow version
     # yamllint enable rule:line-length
     environment:
@@ -240,10 +242,11 @@ services:
       _AIRFLOW_WWW_USER_CREATE: 'true'
       _AIRFLOW_WWW_USER_USERNAME: ${_AIRFLOW_WWW_USER_USERNAME:-airflow}
       _AIRFLOW_WWW_USER_PASSWORD: ${_AIRFLOW_WWW_USER_PASSWORD:-airflow}
-      _PIP_ADDITIONAL_REQUIREMENTS: ''
+      _PIP_ADDITIONAL_REQUIREMENTS: ''  # Уберите дополнительные требования PIP здесь
     user: "0:0"
     volumes:
       - ${AIRFLOW_PROJ_DIR:-.}:/sources
+
 
   airflow-cli:
     <<: *airflow-common
