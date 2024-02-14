@@ -29,7 +29,7 @@ class PostgreSQLConnector:
         cursor = self.conn.cursor()
         try:
             cursor.execute("""
-                INSERT INTO json_platform.test_table (number, text)
+                INSERT INTO test_table (number, text)
                 VALUES (%s, %s);
             """, (number, text))
             self.conn.commit()
