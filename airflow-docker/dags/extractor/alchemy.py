@@ -1,17 +1,7 @@
-# from sqlalchemy import create_engine, Column, Integer, Numeric, String, TIMESTAMP, Boolean
-# from sqlalchemy.orm import declarative_base, session
-# from sqlalchemy import Column, Integer, Numeric, String
-# from sqlalchemy.ext.declarative import declarative_base
-# from sqlalchemy.schema import CreateSchema
-import json
-
-
 
 
 from sqlalchemy import create_engine, Column, Integer, Numeric, String, TIMESTAMP, Boolean
 from sqlalchemy.orm import declarative_base, sessionmaker
-from sqlalchemy.schema import CreateSchema
-
 
 Base = declarative_base()
 
